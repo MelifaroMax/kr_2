@@ -1,0 +1,67 @@
+{% extends "profile_app/base.html" %}
+
+{% block title %}Заголовок страницы{% endblock %}
+
+{% block content %}
+<h2>Список профилей</h2>
+
+<form method="get">
+    <label>Фильтр по программе:
+        <select name="program" onchange="this.form.submit()">
+            <option value="">Все</option>
+            {% for prog in programs %}
+            <option value="{{ prog }}" {% if prog == selected_program %}selected{% endif %}>{{ prog }}</option>
+            {% endfor %}
+        </select>
+    </label>
+</form>
+
+<p>Средний GPA: {{ avg_gpa|default:"Нет данных" }}</p>
+
+<table border="1">
+  <tr>
+    <th>
+      <a href="?sort=name&direction={% if current_sort == 'name' and current_direction == 'asc' %}desc{% else %}asc{% endif %}{% if selected_program %}&program={{ selected_program }}{% endif %}">
+        Имя
+        {% if current_sort == 'name' %}
+          {% if current_direction == 'asc' %}▲{% else %}▼{% endif %}
+        {% endif %}
+      </a>
+    </th>
+    <th>
+      <a href="?sort=program&direction={% if current_sort == 'program' and current_direction == 'asc' %}desc{% else %}asc{% endif %}{% if selected_program %}&program={{ selected_program }}{% endif %}">
+        Программа
+        {% if current_sort == 'program' %}
+          {% if current_direction == 'asc' %}▲{% else %}▼{% endif %}
+        {% endif %}
+      </a>
+    </th>
+    <th>
+      <a href="?sort=year&direction={% if current_sort == 'year' and current_direction == 'asc' %}desc{% else %}asc{% endif %}{% if selected_program %}&program={{ selected_program }}{% endif %}">
+        Год
+        {% if current_sort == 'year' %}
+          {% if current_direction == 'asc' %}▲{% else %}▼{% endif %}
+        {% endif %}
+      </a>
+    </th>
+    <th>
+      <a href="?sort=gpa&direction={% if current_sort == 'gpa' and current_direction == 'asc' %}desc{% else %}asc{% endif %}{% if selected_program %}&program={{ selected_program }}{% endif %}">
+        GPA
+        {% if current_sort == 'gpa' %}
+          {% if current_direction == 'asc' %}▲{% else %}▼{% endif %}
+        {% endif %}
+      </a>
+    </th>
+  </tr>
+  {% for p in profiles %}
+  <tr>
+    <td>{{ p.name }}</td>
+    <td>{{ p.program }}</td>
+    <td>{{ p.year }}</td>
+    <td>{{ p.gpa }}</td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="4">Нет данных</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

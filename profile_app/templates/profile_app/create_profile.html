@@ -1,0 +1,12 @@
+{% extends "profile_app/base.html" %}
+
+{% block title %}Заголовок страницы{% endblock %}
+
+{% block content %}
+<h2>Добавить профиль</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Сохранить</button>
+</form>
+{% endblock %}

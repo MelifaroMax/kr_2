@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Образовательный проект{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Первя задача</a> |
+            <a href="/admin/">Админка</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
