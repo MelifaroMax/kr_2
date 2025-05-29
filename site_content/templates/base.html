@@ -7,8 +7,12 @@
 <body>
     <header>
         <nav>
-            <a href="/">Первя задача</a> |
-            <a href="/admin/">Админка</a>
+            <a href="/">Первая задача</a> |
+            <a href="/admin/">Админка</a> |
+            <a href="/pages/">Все страницы</a>
+            {% for page in pages_menu %}
+                | <a href="{% url 'page_detail' slug=page.slug %}">{{ page.title }}</a>
+            {% endfor %}
         </nav>
     </header>
     <main>

@@ -1,0 +1,18 @@
+body {
+    background-color: #f8f9fa;
+}
+
+main {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    color: #999;
+    font-size: 0.9em;
+    margin-top: 40px;
+}
